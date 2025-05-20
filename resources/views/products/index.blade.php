@@ -41,19 +41,14 @@
                                {{$product->name}}<br>
                                <label>￥{{$product->price}}</label>
                            </p>
-                           @php
-        $raw_score = $product->reviews->avg('score');
-        $average_score = round($raw_score ?? 0, 1);
-        $rounded_score = round($average_score * 2) / 2;
-    @endphp
+                          @php
+    $average_score = round($product->reviews->avg('score') ?? 0, 1);
+    $rounded_score = round($average_score * 2) / 2;
+  @endphp
 
-    @if ($raw_score !== null)
-        <div class="samuraimart-star-rating" data-rate="{{ $rounded_score }}"></div>
-        <p>評価：{{ $average_score }} / 5</p>
-    @else
-        <p>まだレビューはありません</p>
-        
-    @endif
+  <div class="samuraimart-star-rating mt-2" data-rate="{{ $rounded_score }}"></div>
+  <p>{{ $average_score }} / 5.0</p>
+
                        </div>
                    </div>
                </div>

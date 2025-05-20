@@ -25,11 +25,12 @@
                             <label>￥{{ $recommend_product->price }}</label>
                         </p>
                         @php
-                        $avg = round(($recommend_product->reviews->avg('score') ?? 0) * 2) / 2;
+                        $average_score = round($recommend_product->reviews->avg('score') ?? 0, 1); // 表示用（例：3.2）
+                        $rounded_score = round($average_score * 2) / 2; // CSS適用用（例：3.5）
                         @endphp
 
-                        <div class="samuraimart-star-rating" data-rate="{{ $avg }}"></div>
-                        <p>評価：{{ round($recommend_product->reviews->avg('score'), 1) ?? '0.0' }} / 5</p>
+                        <div class="samuraimart-star-rating mt-2" data-rate="{{ $rounded_score }}"></div>
+                        <p class="mt-1">{{ $average_score }} / 5.0</p>
                     </div>
                 </div>
             </div>
@@ -58,12 +59,12 @@
                                 <label>￥{{ $recently_product->price }}</label>
                             </p>
                             @php
-    $raw = $recently_product->reviews->avg('score') ?? 0;
-    $avg = round($raw * 2) / 2;
-@endphp
+                            $average_score = round($recently_product->reviews->avg('score') ?? 0, 1); // 表示用（例：3.2）
+                            $rounded_score = round($average_score * 2) / 2; // CSS適用用（例：3.5）
+                            @endphp
 
-<div class="samuraimart-star-rating" data-rate="{{ number_format($avg, 1) }}"></div>
-<p>評価：{{ round($raw, 1) }} / 5</p>
+                            <div class="samuraimart-star-rating mt-2" data-rate="{{ $rounded_score }}"></div>
+                            <p>{{ $average_score }} / 5.0</p>
                         </div>
                     </div>
                 </div>

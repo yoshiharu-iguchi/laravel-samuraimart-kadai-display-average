@@ -18,16 +18,10 @@
               @php
                 $average_score = round($product->reviews->avg('score') ?? 0, 1);
                 $rounded_score = round($average_score * 2) / 2;
-                $css_rate = number_format($rounded_score, 1);
-                $css_rate_class = 'rate-' . str_replace('.', '-', $css_rate);
               @endphp
 
-@if ($product->reviews->count() > 0)
-    <div class="samuraimart-star-rating mt-2 {{ $css_rate_class }}"></div>
-    <p>評価：{{ $average_score }} / 5</p>
-@else
-    <p>まだレビューはありません</p>
-@endif
+                <div class="samuraimart-star-rating mt-2" data-rate="{{ $rounded_score }}"></div>
+                <p>{{ $average_score }} / 5.0</p>
 
     
 
@@ -92,8 +86,8 @@
            <h3 class="float-left">カスタマーレビュー</h3>
 
            @if ($average_score > 0)
-               <div class="samuraimart-star-rating mt-2" data-rate="{{ $css_rate_class }}"></div>
-               <p>評価：{{ $average_score }} / 5</p>
+               <div class="samuraimart-star-rating mt-2" data-rate="{{ $rounded_score }}"></div>
+               
            @endif
        </div>
 

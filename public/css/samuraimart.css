@@ -189,34 +189,42 @@ th, td {
 
 .samuraimart-star-rating {
   position: relative;
-  font-size: 24px;
-  color: #ccc;
   display: inline-block;
+  font-size: 1.5rem;
+  color: #ccc;
   line-height: 1;
+  width: 5.5em; /* 星5個分の幅 */
+  height: 1.5em;
 }
 
 .samuraimart-star-rating::before {
   content: "★★★★★";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #ccc; /* グレーの背景星 */
+  z-index: 0;
 }
 
 .samuraimart-star-rating::after {
   content: "★★★★★";
-  color: #0fbe9f;
   position: absolute;
-  top: 0;
   left: 0;
+  top: 0;
+  color: #0fbe9f; /* 前面の金色の星 */
   overflow: hidden;
-  width: 0;
+  z-index: 1;
+  width: 0%; /* ここはdata-rateで上書きされる */
 }
 
-/* 星塗り幅 */
-.samuraimart-star-rating.rate-0-5::after { width: 10%; }
-.samuraimart-star-rating.rate-1-0::after { width: 20%; }
-.samuraimart-star-rating.rate-1-5::after { width: 30%; }
-.samuraimart-star-rating.rate-2-0::after { width: 40%; }
-.samuraimart-star-rating.rate-2-5::after { width: 50%; }
-.samuraimart-star-rating.rate-3-0::after { width: 60%; }
-.samuraimart-star-rating.rate-3-5::after { width: 70%; }
-.samuraimart-star-rating.rate-4-0::after { width: 80%; }
-.samuraimart-star-rating.rate-4-5::after { width: 90%; }
-.samuraimart-star-rating.rate-5-0::after { width: 100%; }
+/* 星の塗りつぶし幅をdata-rateでコントロール（0.5刻み） */
+.samuraimart-star-rating[data-rate="0.5"]::after { width: 10%; }
+.samuraimart-star-rating[data-rate="1"]::after { width: 20%; }
+.samuraimart-star-rating[data-rate="1.5"]::after { width: 30%; }
+.samuraimart-star-rating[data-rate="2"]::after { width: 40%; }
+.samuraimart-star-rating[data-rate="2.5"]::after { width: 50%; }
+.samuraimart-star-rating[data-rate="3"]::after { width: 60%; }
+.samuraimart-star-rating[data-rate="3.5"]::after { width: 70%; }
+.samuraimart-star-rating[data-rate="4"]::after { width: 80%; }
+.samuraimart-star-rating[data-rate="4.5"]::after { width: 90%; }
+.samuraimart-star-rating[data-rate="5"]::after { width: 100%; }
